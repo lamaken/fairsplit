@@ -1,9 +1,14 @@
 package visualk.apps.fairsplit;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import visualk.apps.fairsplit.model.ModelData;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +17,16 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button bt=(Button) findViewById(R.id.buttonStart);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent intent = new Intent(getBaseContext(), ParticipantsActivity.class);
+                intent.putExtra("SESSION_ID", "session");
+                startActivity(intent);
+            }
+        });
     }
 
 /*

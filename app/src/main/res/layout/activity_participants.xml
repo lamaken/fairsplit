@@ -1,6 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:id="@+id/someLayoutId"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -8,60 +10,9 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="visualk.apps.fairsplit.ParticipantsActivity">
 
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:layout_margin="5dp"
-        android:layout_weight="0.1"
-        android:layout_centerHorizontal="true">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageViewPhoto"
-                android:background="@drawable/ic_launcher"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ALEX CAMPS"
-                android:id="@+id/textViewName"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:layout_weight="1" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20€"
-                android:id="@+id/textView2"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:layout_weight="1" />
-
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="+"
-            android:id="@+id/buttonAdd"
-            android:layout_margin="5dp"
-            android:layout_gravity="center"
-            android:layout_weight="1" />
-
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="-"
-            android:id="@+id/buttonDelete"
-            android:layout_margin="5dp"
-            android:layout_gravity="right|center"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+<!--
+    <include layout="@layout/participants_layout" android:id="@+id/someLayoutId" />
+    <include layout="@layout/participants_layout" android:id="@+id/someLayoutId" />
+    <include layout="@layout/participants_layout" android:id="@+id/someLayoutId" />
+-->
+</LinearLayout>
