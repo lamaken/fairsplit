@@ -5,7 +5,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:layout_weight="0.1"
         android:layout_centerHorizontal="true">
 
@@ -15,49 +15,41 @@
             android:id="@+id/imageViewPhoto"
             android:background="@drawable/ic_launcher"
             android:layout_gravity="left"
-            android:layout_margin="5dp" />
+            android:layout_margin="3dp"/>
 
         <EditText
-            android:layout_width="87dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
-            android:ems="10"
+            android:text=""
+            android:hint="Name"
             android:id="@+id/editTextNom"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
+            android:layout_margin="3dp"
             />
 
         <EditText
-            android:layout_width="54dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:inputType="numberSigned"
-            android:text="Eur"
-            android:ems="10"
+            android:inputType="numberDecimal"
+            android:hint="Money"
+
             android:id="@+id/editTextEuros"
             android:layout_gravity="center"
-            android:layout_margin="5dp"/>
-        <EditText
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:inputType="numberSigned"
-            android:text="Cents"
-            android:ems="10"
-            android:id="@+id/editTextCentims"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            />
+            android:layout_margin="3dp"/>
+
 
 
         <Button
             style="?android:attr/buttonStyleSmall"
-
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="-"
             android:id="@+id/buttonDelete"
-            android:layout_margin="5dp"
-            android:layout_gravity="right|center"/>
+            android:layout_margin="3dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_remove" />
+
+
 
 
 </LinearLayout>

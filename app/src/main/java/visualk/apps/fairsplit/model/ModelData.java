@@ -10,11 +10,61 @@ import java.util.LinkedList;
 /**
  * Created by lamaken on 13/09/14.
  */
+
+
+
+
+
+
+
 public class ModelData {
+
+
+
+
+   private static ModelData model=null;
+
+   public static ModelData getInstance(){
+       if(model==null){
+           model=new ModelData("cadaques");
+       }
+       return model;
+   }
+
+
+
+
     private String id;
     private String name;
     private Date date;
-    private LinkedList<Participant> llistadeparticipants;
+    public LinkedList<Participant> llistadeparticipants;
+
+
+    public void CalculaResultat(){
+
+        Float sumaTotal=new Float("0");
+        for(int n=0;n< llistadeparticipants.size();n++){
+            sumaTotal+=llistadeparticipants.get(n).getRealMoney();
+        }
+
+        Integer numParticipants=llistadeparticipants.size();
+
+        Float resultat = new Float(sumaTotal/numParticipants);
+        Float valor;
+
+        for(int n=0;n< llistadeparticipants.size();n++){
+            valor=new Float(new Float(llistadeparticipants.get(n).getRealMoney())-new Float(resultat));
+
+            if(valor<0) {
+                llistadeparticipants.get(n).setDeu(valor);
+            }else{
+                llistadeparticipants.get(n).setLiDeuen(new Float(valor));
+
+            }
+        }
+
+
+    }
 
     public ModelData(String name) {
         this.id = new UniqueName(5).getName();
@@ -22,9 +72,8 @@ public class ModelData {
         this.name=name;
         this.llistadeparticipants=new LinkedList<Participant>();
     }
-
-    public void addParticipant(Bitmap photo,String alias,Integer money){
-        Participant p = new Participant(photo,alias,money);
+    public void addParticipant(Bitmap photo,String alias,Float money){
+        Participant p = new Participant(/*photo,*/alias,money);
         llistadeparticipants.add(p);
     }
     public void addParticipant(Participant p){
@@ -42,26 +91,14 @@ public class ModelData {
 
     @Override
     public String toString() {
-        return "id:"+id+" name:"+name+" date:"+date;
+        String ret="<"+name+">";
+
+        for (int n=0;n<llistadeparticipants.size();n++){
+            ret+=llistadeparticipants.get(n).toString();
+        }
+        return ret+"!";
     }
 
-    public class Participant{
-        private String id="-1";
-        private Bitmap photo=null;
-        private String alias="anonymous";
-        private Integer money=0;           //Centims
 
-        public Participant(Bitmap photo,String alias,Integer money) {
-            this.id=new UniqueName(5).getName();
-            this.photo=photo;
-            this.alias=alias;
-            this.money=money;
-        }
-        public String getId(){
-            return id;
-        }
-
-
-    }
 }
 

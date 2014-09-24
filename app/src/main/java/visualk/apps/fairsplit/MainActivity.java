@@ -7,16 +7,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import visualk.apps.fairsplit.model.ModelData;
 
 
 public class MainActivity extends ActionBarActivity {
 
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         Button bt=(Button) findViewById(R.id.buttonStart);
         bt.setOnClickListener(new View.OnClickListener() {
