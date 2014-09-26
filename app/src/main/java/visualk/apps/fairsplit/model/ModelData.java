@@ -50,15 +50,18 @@ public class ModelData {
         Integer numParticipants=llistadeparticipants.size();
 
         Float resultat = new Float(sumaTotal/numParticipants);
-        Float valor;
+        Float valor=null;
 
         for(int n=0;n< llistadeparticipants.size();n++){
             valor=new Float(new Float(llistadeparticipants.get(n).getRealMoney())-new Float(resultat));
 
             if(valor<0) {
+                llistadeparticipants.get(n).setLiDeuen(new Float("0.0"));
+
                 llistadeparticipants.get(n).setDeu(valor);
             }else{
                 llistadeparticipants.get(n).setLiDeuen(new Float(valor));
+                llistadeparticipants.get(n).setDeu(new Float("0.0"));
 
             }
         }

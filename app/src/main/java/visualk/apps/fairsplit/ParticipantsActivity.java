@@ -1,5 +1,6 @@
 package visualk.apps.fairsplit;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.LinkedList;
 
 import visualk.apps.fairsplit.R;
@@ -27,10 +29,10 @@ import visualk.apps.fairsplit.model.Participant;
 import visualk.apps.fairsplit.model.UniqueName;
 
 import static visualk.apps.fairsplit.R.id.buttonDelete;
+import static visualk.apps.fairsplit.R.id.edit_query;
 
 
 public class ParticipantsActivity extends ActionBarActivity {
-
 
 
 
@@ -66,6 +68,7 @@ public class ParticipantsActivity extends ActionBarActivity {
 
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -88,11 +91,16 @@ public class ParticipantsActivity extends ActionBarActivity {
 
         TextView t_money = (TextView) v.findViewById(R.id.editTextEuros);
 
+/*
+        t_money.OnFocusChangeListener(){
+            updateLlistaParticipants();
 
+        }
+*/
         try {
 
 
-            t_money.setText(ModelData.getInstance().llistadeparticipants.get(n).getMoney());
+            t_money.setText(ModelData.getInstance().llistadeparticipants.get(n).formatMoney());
 
         }catch (NullPointerException e){
             t_money.setText("0");
@@ -116,46 +124,52 @@ public class ParticipantsActivity extends ActionBarActivity {
 
             }
         });
-
-        t_money.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-                                             @Override
-                                             public void onFocusChange(View v, boolean hasFocus) {
-                                                 if (!hasFocus) {
-                                                     // user is done editing
-                                                     updateLlistaParticipants();
-
-                                                 }
-                                             }
-                                         });
-
                 t_money.addTextChangedListener(new TextWatcher() {
+
+
+
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                     }
 
+
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
                     }
 
                     @Override
                     public void afterTextChanged(Editable editable) {
 
-                        Float number;
 
+
+                        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                        Float output=null;
                         try {
-                            number = new Float(editable.toString());
-                        } catch (NumberFormatException e) {
-                            number = new Float("0");
+                            output=new Float(editable.toString());
+
+                        }catch (NumberFormatException e){
+
+                            String o=editable.toString();
+
+
+                            if( o.length()>0)o=o.substring(1,editable.length());
+
+                      //       Toast.makeText(getApplicationContext(), "o:"+o,Toast.LENGTH_LONG).show();
+
+                            if(o.equals(""))o="0";
+
+                            try {
+                                output = new Float(o);
+                            }catch (NumberFormatException e1){
+                                output = new Float("0");
+
+                            }
                         }
+                        ModelData.getInstance().llistadeparticipants.get(n).setMoney(output);
 
-
-                        ModelData.getInstance().llistadeparticipants.get(n).setMoney(number);
 
                     }
                 });
-
 
 
 
@@ -186,7 +200,7 @@ public class ParticipantsActivity extends ActionBarActivity {
 
 
     public void updateLlistaParticipants(){
-
+     //Toast.makeText(getApplicationContext(), "updateLlistaParticipants",Toast.LENGTH_LONG).show();
         LinearLayout llsource = (LinearLayout) findViewById(R.id.participantsMainLayoutId);
         if(llsource!=null)llsource.removeAllViews();
 
@@ -220,6 +234,12 @@ public class ParticipantsActivity extends ActionBarActivity {
             addParticipantsLayout();
             return true;
         }
+        if (id == R.id.action_update) {
+                updateLlistaParticipants();
+
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

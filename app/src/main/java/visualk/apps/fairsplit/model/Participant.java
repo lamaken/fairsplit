@@ -58,11 +58,14 @@ public class Participant {
     }
     public String getMoney() {
         Float fmoney = new Float(money);
+        return Float.toString(fmoney);
+    }
+    public String formatMoney(){
+        Float fmoney = new Float(money);
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         String output = formatter.format(fmoney);
         return output;
     }
-
 
     public String getDeu() {
         if (deu==null)deu=new Float(0);

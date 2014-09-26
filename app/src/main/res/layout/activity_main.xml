@@ -12,14 +12,13 @@
         android:id="@+id/buttonStart"
         android:background="@drawable/ic_launcher"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="fairsplit v0.1"
+        android:text="DINAMICA CON LA VERSION"
         android:id="@+id/textView"
         android:layout_below="@+id/buttonStart"
         android:layout_centerHorizontal="true"

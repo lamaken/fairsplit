@@ -1,12 +1,15 @@
 package visualk.apps.fairsplit;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import visualk.apps.fairsplit.model.ModelData;
@@ -34,6 +37,19 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
+
+        PackageInfo pInfo = null;
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        String version = pInfo.versionName+"."+pInfo.versionCode;
+        TextView tv=(TextView)findViewById(R.id.textView);
+        tv.setText("fairsplit v"+version);
     }
 
 /*
